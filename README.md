@@ -13,7 +13,7 @@ Students who complete this project independently are able to:
 * understand basic model-view-controller design and implementation
 * create a custom model object with a memberwise initializer
 * understand, create, and use a shared instance
-* create a model object controller with create, read, update, delete methods
+* create a model object controller with create, update, and delete methods
 * implement the Equatable protocol
 
 ### Part Two - User Interface
@@ -25,12 +25,10 @@ Students who complete this project independently are able to:
 * understand, use, and implement the 'updateWith' pattern
 * implement 'prepareForSegue' to configure destination view controllers
 
-### Part Three - Controller Implementation
+### Black Diamond - Persistence
 
 * add data persistence using NSUserDefaults
-* understand, use, and implement the builder methods pattern
 * create a custom model object with a failable initializer
-* use the array map method to translate objects
 
 ## Part One - Model Objects and Controllers
 
@@ -45,14 +43,15 @@ Create an ```Entry``` model class that will hold a title, text, and timestamp fo
 
 ### EntryController
 
-Create a model object controller called ```EntryController``` that will manage adding, reading, updating, and removing entries. We will follow the shared instance design pattern because we want one consistent source of truth for our entry objects that are held on the controller.
+Create a model object controller called ```EntryController``` that will manage adding, updating, and removing entries. We will follow the shared instance design pattern because we want one consistent source of truth for our entry objects that are held on the controller.
 
 1. Add a new ```EntryController``` class as an ```NSObject``` subclass
-2. Add an entries NSArray property
-3. Create a ```- (void)addEntry:(Entry *)entry``` method that adds the entry parameter to the entries array
+2. Add an entries NSMutableArray property
+3. Create a ```- (void)addEntryWithTitle:(NSString *)title bodyText:(NSSTring *)bodyText``` method that adds the creates an entry and then adds it to the entries array
 4. Create a ```- (void)removeEntry:(Entry *)entry``` method that removes the entry from the entries array
     * note: Look at the ```NSArray``` documentation to find how to remove objects
-5. Create a sharedController property as a shared instance. 
+5. Create a ```- (void)updateEntry:(Entry *)entry title"(NSString *)title bodyText(NSString *)bodyText``` method that removes the entry from the entries array
+6. Create a sharedController property as a shared instance. 
     * note: Review the syntax for creating shared instance properties
 
 ```
@@ -65,11 +64,6 @@ Create a model object controller called ```EntryController``` that will manage a
     return sharedInstance;
 }
 ```
-
-### Black Diamonds
-
-* Implement the NSCoding protocol on the Entry class
-* Create a Unit test that verifies NSCoding methodality by converting an instance to and from NSData
 
 ## Part Two - User Interface
 
@@ -92,7 +86,7 @@ You will want this view to reload the table view each time it appears in order t
 
 ### Detail View
 
-Build a view that provides editing and view methodality for a single entry. You will use a UITextField to capture the title, a UITextView to capture the body, a UIButton to save, and a UIButton to clear the title and body text areas.
+Build a view that provides editing and view methodality for a single entry. You will use a UITextField to capture the title, a UITextView to capture the body, a UIBarButton to save, and a UIButton to clear the title and body text areas.
 
 Your Detail View should follow the 'updateWith' pattern for updating the view elements with the details of a model object. To follow this pattern, the developer adds an 'updateWith' method that takes a model object. The method updates the view with details from the model object.
 
@@ -105,7 +99,8 @@ This view needs to serve as a reading and editing view. You will add a UITextFie
 
 1. Add an ```EntryDetailViewController``` file as a subclass of UIViewController
 2. Add a UIViewController scene to Main.storyboard and set the class to ```EntryDetailViewController```
-3. Add a UITextField for the entry's title text to the top of the scene, add an outlet to the class file, and set the delegate relationship
+3. Add a UITextField for the entry's title text to the top of the scene, add an outlet to the class file, and set the delegate relationship 
+    * note: To do this, add <UITextFieldDelegate> to the end of you @interface line of your header file
 4. Implement the delegate methods ```textFieldShouldReturn``` to resign first responder to dismiss the keyboard
 5. Add a UITextView for the entry's body text beneath the title text field, add an outlet to the class file
 6. Add a UIButton beneath the body text view, add an action to the class file that clears the text in the titleTextField and bodyTextView
@@ -127,14 +122,10 @@ You will add two separate segues from the List View to the Detail View. The segu
 5. Continue implementing the ```prepareForSegue``` method. If the identifier is 'toViewEntry' we will pass the selected entry to the DetailViewController by calling our ```- (void)updateWithEntry:(Entry *)entry``` method
     * note: You will need to capture the selected entry by using the indexPath of the selected cell
     * note: Remember that the ```- (void)updateWithEntry:(Entry *)entry``` method will update the destination view controller with the entry details
-
-### Black Diamonds
-
-* Implement UITableViewCellEditingStyles to enable swipe to delete entries on the List View
-* Update Unit and UITests to verify delete methodality
+6. Implement UITableViewCellEditingStyles to enable swipe to delete entries on the List View
 
 
-## Part Three - Controller Implementation
+## Black Diamond - Persistence
 
 You will use NSUserDefaults to add basic data persistence to the Journal app. 
 
@@ -145,7 +136,7 @@ Because ```Entry``` class objects are not plist compatible, and ```NSUserDefault
 1. Implement NSCoding to allow native saving and loading from plist objects like NSUserDefaults
 2. Add factory methods to make NSDictionary representations of the object and initialize new objects with a NSDictionary
 
-There are pros and cons to both approaches. We've opted to go with the latter because it is closer to working with network services and APIs later on in the class.
+There are pros and cons to both approaches. We've opted to go with the latter because it is similr to working with network services and API's.
 
 1. Write a ```dictionaryCopy``` method that returns an ```NSDictionary``` with keys and values matching the properties of the object.
     * note: Avoid using 'Magic Strings' in your code. Create private string keys for the class for each property that will be stored to and pulled from a NSDictionary (ex. ```static NSString * const TimeStampKey = @"timestamp"```)
@@ -168,12 +159,6 @@ Our EntryController object is the source of truth for entries. We are now adding
 3. Call the ```- (void)loadFromPersistentStorage``` method when the ```EntryController``` is initialized
 
 4. Call the ```- (void)saveToPersistentStorage``` any time that the list of entries is modified
-
-### Black Diamonds
-
-* Implement the NSCoding protocol on the Entry class
-* Create a Unit test that verifies NSCoding methodality by converting an instance to and from NSData
-* Refactor persistence to work natively with Entry objects
 
 ## Contributions
 

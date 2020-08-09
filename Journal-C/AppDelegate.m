@@ -20,9 +20,4 @@
     return YES;
 }
 
-- (void)applicationWillTerminate:(UIApplication *)application
-{
-	[[DMNEntryController sharedController] saveToPersistentStorage];
-}
-
 @end

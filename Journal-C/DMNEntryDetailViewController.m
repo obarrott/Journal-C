@@ -38,20 +38,10 @@
 - (IBAction)saveButtonTapped:(id)sender
 {
 	if (self.entry) {
-		
-		self.entry.title = self.titleTextField.text;
-		self.entry.text = self.textTextView.text;
-		self.entry.timestamp = [NSDate date];
-		
+        [[DMNEntryController sharedController] updateEntry:self.entry title:self.titleTextField.text text:self.textTextView.text];
 	} else {
-		
-		DMNEntry *entry = [[DMNEntry alloc] initWithTitle:self.titleTextField.text text:self.textTextView.text timeStamp:[NSDate date]];
-		
-		[[DMNEntryController sharedController] addEntriesObject:entry];
-		
-		self.entry = entry;
+        [[DMNEntryController sharedController] addEntryWithTitle:self.titleTextField.text text:self.textTextView.text];
 	}
-	
 	[self.navigationController popViewControllerAnimated:true];
 }
 

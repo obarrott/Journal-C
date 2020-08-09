@@ -25,6 +25,12 @@ static NSString * const TimestampKey = @"timestamp";
 	return self;
 }
 
+-(instancetype)initWithTitle:(NSString *)title text:(NSString *)text
+{
+    self = [self initWithTitle:title text:text timeStamp:[NSDate date]];
+    return self;
+}
+
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary
 {
 	NSString *title = dictionary[TitleKey];
@@ -33,7 +39,7 @@ static NSString * const TimestampKey = @"timestamp";
 	return [self initWithTitle:title text:text timeStamp:timestamp];
 }
 
-- (NSDictionary *)dictionaryRepresentation
+- (NSDictionary *)dictionaryCopy
 {
 	return @{TitleKey: self.title,
 			 TextKey: self.text,
@@ -44,7 +50,7 @@ static NSString * const TimestampKey = @"timestamp";
 {
 	if (![object isKindOfClass:[DMNEntry class]]) { return NO; }
 	// Shortcut to comparing all properties one by one. We let NSDictionary do it for us
-	return [[self dictionaryRepresentation] isEqualToDictionary:[(DMNEntry *)object dictionaryRepresentation]];
+	return [[self dictionaryCopy] isEqualToDictionary:[(DMNEntry *)object dictionaryCopy]];
 }
 
 @end

@@ -11,12 +11,14 @@
 
 @interface DMNEntryController : NSObject
 
+@property (nonatomic, strong) NSMutableArray *entries;
+
 + (DMNEntryController *)sharedController;
 
-- (void)saveToPersistentStorage;
+- (void)addEntryWithTitle:(NSString *)title text:(NSString *)text;
+- (void)removeEntry:(DMNEntry *)entry;
+- (void)updateEntry:(DMNEntry *)entry title:(NSString *)title text:(NSString *)text;
 
-@property (nonatomic, strong, readonly) NSArray *entries;
-- (void)addEntriesObject:(DMNEntry *)entry;
-- (void)removeEntriesObject:(DMNEntry *)entry;
+- (void)saveToPersistentStorage;
 
 @end

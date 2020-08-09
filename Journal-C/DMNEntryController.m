@@ -10,12 +10,6 @@
 
 static NSString * const EntriesKey = @"entries";
 
-@interface DMNEntryController ()
-
-@property (nonatomic, strong) NSMutableArray *internalEntries;
-
-@end
-
 @implementation DMNEntryController
 
 + (DMNEntryController *)sharedController
@@ -33,9 +27,41 @@ static NSString * const EntriesKey = @"entries";
 {
 	self = [super init];
 	if (self) {
-		_internalEntries = [NSMutableArray array];
+		_entries = [NSMutableArray new];
 	}
 	return self;
+}
+
+
+#pragma mark - Add Entry
+- (void)addEntryWithTitle:(NSString *)title text:(NSString *)text
+{
+    DMNEntry *newEntry = [[DMNEntry alloc] initWithTitle:title text:text];
+    
+    [_entries addObject:newEntry];
+    [self saveToPersistentStorage];
+}
+
+#pragma mark - Update Entry
+- (void)updateEntry:(DMNEntry *)entry title:(NSString *)title text:(NSString *)text
+{
+    entry.title = title;
+    entry.text = text;
+    entry.timestamp = [NSDate date];
+    [self saveToPersistentStorage];
+}
+
+#pragma mark - Remove Entry
+- (void)removeEntry:(DMNEntry *)entry
+{
+    [_entries removeObject:entry];
+    [self saveToPersistentStorage];
+}
+
+- (void)addDictObject:(DMNEntry *)entry;
+{
+    [_entries addObject:entry];
+    [self saveToPersistentStorage];
 }
 
 - (void)saveToPersistentStorage
@@ -43,7 +69,7 @@ static NSString * const EntriesKey = @"entries";
     NSMutableArray *entryDictionaries = [NSMutableArray new];
     
     for (DMNEntry *entry in self.entries) {
-        [entryDictionaries addObject:entry.dictionaryRepresentation];
+        [entryDictionaries addObject:entry.dictionaryCopy];
     }
     
     [[NSUserDefaults standardUserDefaults] setObject:entryDictionaries forKey:EntriesKey];
@@ -54,22 +80,8 @@ static NSString * const EntriesKey = @"entries";
     NSArray *entryDictionaries = [[NSUserDefaults standardUserDefaults] objectForKey:EntriesKey];
     for (NSDictionary *dictionary in entryDictionaries) {
         DMNEntry *entry = [[DMNEntry alloc] initWithDictionary:dictionary];
-		[self addEntriesObject:entry];
+        [self addDictObject:entry];
     }
-}
-
-#pragma mark - Properties
-
-- (NSArray *)entries { return self.internalEntries; }
-
-- (void)addEntriesObject:(DMNEntry *)entry
-{
-	[self.internalEntries addObject:entry];
-}
-
-- (void)removeEntriesObject:(DMNEntry *)entry
-{
-	[self.internalEntries removeObject:entry];
 }
 
 @end

@@ -10,13 +10,15 @@
 
 @interface DMNEntry : NSObject
 
-- (instancetype)initWithTitle:(NSString *)title text:(NSString *)text timeStamp:(NSDate *)timestamp;
-
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
-- (NSDictionary *)dictionaryRepresentation;
-
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) NSString *text;
 @property (nonatomic, strong) NSDate *timestamp;
+
+- (instancetype)initWithTitle:(NSString *)title text:(NSString *)text timeStamp:(NSDate *)timestamp;
+
+- (instancetype)initWithTitle:(NSString *)title text:(NSString *)text;
+
+- (instancetype)initWithDictionary:(NSDictionary *)dictionary;
+- (NSDictionary *)dictionaryCopy;
 
 @end
