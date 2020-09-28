@@ -12,6 +12,10 @@
 		7E76616824E17A4300EBE53D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E76616624E17A4300EBE53D /* Main.storyboard */; };
 		7E76616A24E17A4600EBE53D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E76616924E17A4600EBE53D /* Assets.xcassets */; };
 		7E76616D24E17A4600EBE53D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E76616B24E17A4600EBE53D /* LaunchScreen.storyboard */; };
+		A6A466832522845300FAE0DF /* OBBEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A466822522845300FAE0DF /* OBBEntry.m */; };
+		A6A46687252286B000FAE0DF /* OBBEntryController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A46686252286B000FAE0DF /* OBBEntryController.m */; };
+		A6A4668E252293CF00FAE0DF /* OBBEntryListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A4668D252293CF00FAE0DF /* OBBEntryListTableViewController.m */; };
+		A6A46694252295CD00FAE0DF /* OBBEntryDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A6A46693252295CD00FAE0DF /* OBBEntryDetailViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +26,15 @@
 		7E76616924E17A4600EBE53D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7E76616C24E17A4600EBE53D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7E76616E24E17A4600EBE53D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A6A466802522845300FAE0DF /* Journal-C-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Journal-C-Bridging-Header.h"; sourceTree = "<group>"; };
+		A6A466812522845300FAE0DF /* OBBEntry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OBBEntry.h; sourceTree = "<group>"; };
+		A6A466822522845300FAE0DF /* OBBEntry.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OBBEntry.m; sourceTree = "<group>"; };
+		A6A46685252286B000FAE0DF /* OBBEntryController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OBBEntryController.h; sourceTree = "<group>"; };
+		A6A46686252286B000FAE0DF /* OBBEntryController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OBBEntryController.m; sourceTree = "<group>"; };
+		A6A4668C252293CF00FAE0DF /* OBBEntryListTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OBBEntryListTableViewController.h; sourceTree = "<group>"; };
+		A6A4668D252293CF00FAE0DF /* OBBEntryListTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OBBEntryListTableViewController.m; sourceTree = "<group>"; };
+		A6A46692252295CD00FAE0DF /* OBBEntryDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OBBEntryDetailViewController.h; sourceTree = "<group>"; };
+		A6A46693252295CD00FAE0DF /* OBBEntryDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OBBEntryDetailViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +67,9 @@
 		7E76615F24E17A4300EBE53D /* Journal-C */ = {
 			isa = PBXGroup;
 			children = (
+				A6A46688252292ED00FAE0DF /* View Controller */,
+				A6A466842522869A00FAE0DF /* Model Controller */,
+				A6A4667F252282E300FAE0DF /* Model */,
 				7E76617424E17A5500EBE53D /* Resources */,
 				7E76616624E17A4300EBE53D /* Main.storyboard */,
 			);
@@ -70,6 +86,36 @@
 				7E76616E24E17A4600EBE53D /* Info.plist */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		A6A4667F252282E300FAE0DF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A6A466812522845300FAE0DF /* OBBEntry.h */,
+				A6A466822522845300FAE0DF /* OBBEntry.m */,
+				A6A466802522845300FAE0DF /* Journal-C-Bridging-Header.h */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A6A466842522869A00FAE0DF /* Model Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A6A46685252286B000FAE0DF /* OBBEntryController.h */,
+				A6A46686252286B000FAE0DF /* OBBEntryController.m */,
+			);
+			path = "Model Controller";
+			sourceTree = "<group>";
+		};
+		A6A46688252292ED00FAE0DF /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A6A4668C252293CF00FAE0DF /* OBBEntryListTableViewController.h */,
+				A6A4668D252293CF00FAE0DF /* OBBEntryListTableViewController.m */,
+				A6A46692252295CD00FAE0DF /* OBBEntryDetailViewController.h */,
+				A6A46693252295CD00FAE0DF /* OBBEntryDetailViewController.m */,
+			);
+			path = "View Controller";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -104,6 +150,7 @@
 				TargetAttributes = {
 					7E76615C24E17A4300EBE53D = {
 						CreatedOnToolsVersion = 11.6;
+						LastSwiftMigration = 1170;
 					};
 				};
 			};
@@ -143,7 +190,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6A466832522845300FAE0DF /* OBBEntry.m in Sources */,
+				A6A4668E252293CF00FAE0DF /* OBBEntryListTableViewController.m in Sources */,
 				7E76616124E17A4300EBE53D /* AppDelegate.swift in Sources */,
+				A6A46687252286B000FAE0DF /* OBBEntryController.m in Sources */,
+				A6A46694252295CD00FAE0DF /* OBBEntryDetailViewController.m in Sources */,
 				7E76616324E17A4300EBE53D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -288,6 +339,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Journal-C/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -296,6 +348,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.CameronStuart.Journal-C";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Journal-C/Model/Journal-C-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -305,6 +359,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "Journal-C/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -313,6 +368,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.CameronStuart.Journal-C";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Journal-C/Model/Journal-C-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
